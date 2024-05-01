@@ -1,56 +1,34 @@
 <?php
-// Verifica se a requisição é do tipo POST
+// Verifica se a solicitação é do tipo POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recebe os dados do livro enviados via POST
-    $id = $_POST["id"];
-    $nome = $_POST["nome"];
+    // Obtém os dados enviados pelo JavaScript
+    $data = json_decode(file_get_contents("php://input"));
 
-    // Configurações de conexão com o banco de dados
-    $servername = 'srv1197.hstgr.io'; 
-    $username = 'u689582486_user';
-    $password = '5e^TKn5ISqX';
-    $dbname = 'u689582486_teste';
+    // Conecta ao banco de dados (substitua 'localhost', 'username', 'password' e 'database' pelos valores apropriados)
+    $conn = new mysqli("localhost", "username", "password", "database");
 
-    // Cria conexão
-    $mysqli = new mysqli($servername, $username, $password, $dbname);
-
-    // Verifica a conexão
-    if ($mysqli->connect_errno) {
-        echo "Falha na conexão: " . $mysqli->connect_errno . " / " . $mysqli->connect_error;
-        exit();
+    // Verifica se houve erro na conexão
+    if ($conn->connect_error) {
+        die("Erro de conexão: " . $conn->connect_error);
     }
 
-    // Prepara a consulta SQL para inserção do novo livro
-    $query = "INSERT INTO livros (id, nome) VALUES (?, ?)";
-    $stmt = $mysqli->prepare($query);
+    // Prepara e executa a query de inserção
+    $stmt = $conn->prepare("INSERT INTO livros (id, nome) VALUES (?, ?)");
+    $stmt->bind_param("is", $data->id, $data->nome);
 
-    // Verifica se a consulta foi preparada com sucesso
-    if ($stmt === false) {
-        echo "Erro na preparação da consulta: " . $mysqli->error;
-        exit();
+    if ($stmt->execute()) {
+        // Se a inserção for bem-sucedida, retorna uma mensagem de sucesso
+        echo "Livro adicionado com sucesso!";
+    } else {
+        // Se houver um erro na inserção, retorna uma mensagem de erro
+        echo "Erro ao adicionar o livro: " . $conn->error;
     }
 
-    // Associa os parâmetros da consulta com os valores recebidos via POST
-    $stmt->bind_param("is", $id, $nome);
-
-    // Executa a consulta
-    $result = $stmt->execute();
-
-    // Verifica se a consulta foi bem-sucedida
-    if ($result === false) {
-        echo "Erro na execução da consulta: " . $stmt->error;
-        exit();
-    }
-
-    // Fecha a declaração
+    // Fecha a conexão e a declaração
     $stmt->close();
-
-    // Fecha a conexão
-    $mysqli->close();
-
-    // Retorna uma mensagem de sucesso
-    echo "Livro adicionado com sucesso!";
+    $conn->close();
 } else {
-    // Retorna uma mensagem de erro se a requisição não for do tipo POST
-    echo "Método não permitido. Utilize o método POST para enviar os dados do livro.";
+    // Se a solicitação não for do tipo POST, retorna uma mensagem de erro
+    echo "Esta página aceita apenas solicitações POST!";
 }
+?>
