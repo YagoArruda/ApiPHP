@@ -1,13 +1,12 @@
 <?php
-header('Content-Type: application/json');
-
 // Verifica se a requisição é do tipo POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recebe os dados do livro enviados via POST
+    $id = $_POST["id"];
     $nome = $_POST["nome"];
 
     // Configurações de conexão com o banco de dados
-    $servername = 'srv1197.hstgr.io';
+    $servername = 'srv1197.hstgr.io'; 
     $username = 'u689582486_user';
     $password = '5e^TKn5ISqX';
     $dbname = 'u689582486_teste';
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepara a consulta SQL para inserção do novo livro
-    $query = "INSERT INTO `livros`(`id`, `nome`) VALUES ('4','[value-2]')";
+    $query = "INSERT INTO livros (id, nome) VALUES (?, ?)";
     $stmt = $mysqli->prepare($query);
 
     // Verifica se a consulta foi preparada com sucesso
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Associa os parâmetros da consulta com os valores recebidos via POST
-    $stmt->bind_param("s", $nome);
+    $stmt->bind_param("is", $id, $nome);
 
     // Executa a consulta
     $result = $stmt->execute();
