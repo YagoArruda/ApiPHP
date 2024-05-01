@@ -51,4 +51,4 @@ $mysqli->close();
 //echo json_encode($livro);
 
 echo json_encode($resultadoJSON);
-?>
+

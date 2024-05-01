@@ -55,4 +55,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retorna uma mensagem de erro se a requisição não for do tipo POST
     echo "Método não permitido. Utilize o método POST para enviar os dados do livro.";
 }
-?>
