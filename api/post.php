@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepara a consulta SQL para inserção do novo livro
-    $query = "INSERT INTO livros (nome) VALUES (?)";
+    $query = "INSERT INTO `livros`(`id`, `nome`) VALUES ('4','[value-2]')";
     $stmt = $mysqli->prepare($query);
 
     // Verifica se a consulta foi preparada com sucesso
