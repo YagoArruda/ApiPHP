@@ -1,4 +1,19 @@
 <?php
+// Permitir solicitações de qualquer origem
+header("Access-Control-Allow-Origin: *");
+
+// Permitir solicitações com os métodos POST e OPTIONS
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+
+// Permitir os cabeçalhos especificados
+header("Access-Control-Allow-Headers: Content-Type");
+
+// Se a solicitação for OPTIONS, retornar com um status 200 OK
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 // Verifica se a solicitação é do tipo POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados enviados pelo JavaScript
