@@ -1,3 +1,3 @@
 <?php
-echo('func');
+echo "func";
 ?>

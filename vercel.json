@@ -7,16 +7,11 @@
   "routes": [
     {
       "src": "/tent2",
-      "dest": "/api/post.php",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "POST"
-      }
+      "dest": "/api/post.php"
     },
     {
       "src": "/get",
-      "dest": "/api/index.php",
+      "dest": "/api/get.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
