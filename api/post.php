@@ -13,12 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados enviados pelo JavaScript
     $data = json_decode(file_get_contents("php://input"));
 
+    var_dump($data); // Depuração: imprime os dados recebidos no console PHP
+
     $servername = 'srv1197.hstgr.io'; 
     $username = 'u689582486_user';
     $password = '5e^TKn5ISqX';
     $dbname = 'u689582486_teste';
 
-    // Conecta ao banco de dados (substitua 'localhost', 'username', 'password' e 'database' pelos valores apropriados)
+    // Conecta ao banco de dados
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verifica se houve erro na conexão
@@ -28,9 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepara e executa a query de inserção
     $stmt = $conn->prepare("INSERT INTO livros (id, nome) VALUES (?, ?)");
-    $stmt->bind_param("is", $data->id, $data->nome);
+    
+    // Verifica se houve erro na preparação da declaração
+    if (!$stmt) {
+        die("Erro ao preparar a declaração: " . $conn->error);
+    }
 
-    if ($stmt->execute()) {
+    // Executa a ligação dos parâmetros e executa a query
+    if ($stmt->bind_param("is", $data->id, $data->nome) && $stmt->execute()) {
         // Se a inserção for bem-sucedida, retorna uma mensagem de sucesso
         echo "Livro adicionado com sucesso!";
     } else {
