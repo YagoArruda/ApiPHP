@@ -4,8 +4,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém os dados enviados pelo JavaScript
     $data = json_decode(file_get_contents("php://input"));
 
+    $servername = 'srv1197.hstgr.io'; 
+    $username = 'u689582486_user';
+    $password = '5e^TKn5ISqX';
+    $dbname = 'u689582486_teste';
+
     // Conecta ao banco de dados (substitua 'localhost', 'username', 'password' e 'database' pelos valores apropriados)
-    $conn = new mysqli("localhost", "username", "password", "database");
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verifica se houve erro na conexão
     if ($conn->connect_error) {
