@@ -6,8 +6,12 @@
   },
   "routes": [
     {
-      "src": "/tent2",
+      "src": "/nolimitpost",
       "dest": "/api/post.php"
+    },
+    {
+      "src": "/nolimitget",
+      "dest": "/api/get.php"
     },
     {
       "src": "/get",
