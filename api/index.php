@@ -7,22 +7,14 @@ if(isset($_GET['mode'])) {
             include 'get.php';
             break;
         case 'post':
-            if(isset($_GET['id'])){
+            if(isset($_GET['name'])){
 
-                $bookId = $_GET['id'];
+                $bookName = $_GET['name'];
+                include 'post.php';
 
-                if(isset($_GET['name'])){
-                    $bookName = $_GET['name'];
-
-                    include 'post.php';
-                }
-                else{
-                    echo "Parâmetro 'name' não encontrado na URL!";
-                }
-                
             }
             else{
-                echo "Parâmetro 'id' não encontrado na URL!";
+                echo "Parâmetro 'name' não encontrado na URL!";
             }
             
             break;
