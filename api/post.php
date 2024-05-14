@@ -6,8 +6,8 @@ $password = '5e^TKn5ISqX';
 $dbname = 'u689582486_teste';
 
 // Dados do livro
-$id = 10;
-$nome = 'Nova Onda do Imperador';
+$id = $bookId;
+$nome = $bookName;
 
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
