@@ -6,7 +6,6 @@ $password = '5e^TKn5ISqX';
 $dbname = 'u689582486_teste';
 
 // Dados do livro
-$id = $bookId;
 $nome = $bookName;
 
 // Conexão com o banco de dados
