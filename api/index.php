@@ -31,6 +31,30 @@ if(isset($_GET['mode'])) {
             break;
     }
 } else {
-    echo "Metodos implementados:\n🟢 Get -[Sem parametro necessario]\n🟡 Post - mode=post&id='0'&name='Livro Teste'\n🔴 Delete [Ainda não implementado] - \n🔴 Edit [Ainda não implementado] - \n\n\n############ \n\n\n🟢 - Completo\n🟡 - Completo, mas pode melhorar\n🔴 - Não implementado ou não funcional \n\n\nProjeto ApiPHP github: [https://github.com/YagoArruda/ApiPHP.git]\nUltima alteração: 14/05/2024";
+    ?>
+            <!DOCTYPE html>
+            <html lang="pt-br">
+            <head>
+                <meta charset="UTF-8">
+                <title>ApiPHP: Hub</title>
+            </head>
+            <br>
+            <h1>Métodos implementados:</h1>
+            <p>🟢 Get - [Sem parâmetro necessário]</p>
+            <p>🟡 Post - mode=post&name=Livro Teste</p>
+            <p>🔴 Delete [Ainda não implementado] - </p>
+            <p>🔴 Edit [Ainda não implementado] - </p>
+            <br>
+            <p>############</p>
+            <br>
+            <p>🟢 - Completo</p>
+            <p>🟡 - Completo, mas pode melhorar</p>
+            <p>🔴 - Não implementado ou não funcional</p>
+            <p>Projeto API PHP no GitHub: [<a href="https://github.com/YagoArruda/ApiPHP.git">https://github.com/YagoArruda/ApiPHP.git</a>]</p>
+            <p>Última alteração: 14/05/2024</p>
+            <br>
+            </body>
+            </html>
+            <?php
 }
 ?>

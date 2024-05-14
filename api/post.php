@@ -18,11 +18,11 @@ if ($conn->connect_error) {
 }
 
 // Prepara a query SQL para inserir os dados
-$sql = "INSERT INTO livros (id, nome) VALUES (?, ?)";
+$sql = "INSERT INTO livros (nome) VALUES (?)";
 $stmt = $conn->prepare($sql);
 
 // Associa os parâmetros à declaração preparada
-$stmt->bind_param("is", $id, $nome);
+$stmt->bind_param("is",$nome);
 
 // Executa a query
 if ($stmt->execute()) {
