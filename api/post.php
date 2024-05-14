@@ -6,7 +6,8 @@ $password = '5e^TKn5ISqX';
 $dbname = 'u689582486_teste';
 
 // Dados do livro
-$nome = $bookName;
+$id = "autoIncrement";
+$nome = "O Paraiso";//$bookName;
 
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,11 +18,11 @@ if ($conn->connect_error) {
 }
 
 // Prepara a query SQL para inserir os dados
-$sql = "INSERT INTO livros (nome) VALUES (?)";
+$sql = "INSERT INTO livros (id, nome) VALUES (?, ?)";
 $stmt = $conn->prepare($sql);
 
 // Associa os parâmetros à declaração preparada
-$stmt->bind_param("is",$nome);
+$stmt->bind_param("is",$id,$nome);
 
 // Executa a query
 if ($stmt->execute()) {
