@@ -6,14 +6,6 @@
   },
   "routes": [
     {
-      "src": "/nolimitpost",
-      "dest": "/api/post.php"
-    },
-    {
-      "src": "/nolimitget",
-      "dest": "/api/get.php"
-    },
-    {
       "src": "/get",
       "dest": "/api/get.php",
       "headers": {

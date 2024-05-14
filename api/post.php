@@ -5,51 +5,33 @@ $username = 'u689582486_user';
 $password = '5e^TKn5ISqX';
 $dbname = 'u689582486_teste';
 
+// Dados do livro
+$id = 10;
+$nome = 'Nova Onda do Imperador';
+
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica se houve erro na conexão
+// Verifica a conexão
 if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
+    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
 }
 
-// Verifica se a requisição é um POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Captura os dados enviados pelo cliente
-    $id = $_POST['id'];
-    $nome = $_POST['nome'];
+// Prepara a query SQL para inserir os dados
+$sql = "INSERT INTO livros (id, nome) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
 
-    // Prepara a consulta SQL para inserir os dados
-    $sql = "INSERT INTO livros (id, nome) VALUES (?, ?)";
+// Associa os parâmetros à declaração preparada
+$stmt->bind_param("is", $id, $nome);
 
-    // Prepara a declaração SQL
-    $stmt = $conn->prepare($sql);
-
-    // Verifica se a preparação da declaração foi bem-sucedida
-    if ($stmt) {
-        // Associa os parâmetros
-        $stmt->bind_param("ss", $id, $nome);
-
-        // Executa a declaração
-        $stmt->execute();
-
-        // Verifica se a inserção foi bem-sucedida
-        if ($stmt->affected_rows > 0) {
-            echo json_encode(array("mensagem" => "Dados inseridos com sucesso."));
-        } else {
-            echo json_encode(array("erro" => "Falha ao inserir os dados."));
-        }
-
-        // Fecha a declaração
-        $stmt->close();
-    } else {
-        echo json_encode(array("erro" => "Falha na preparação da declaração SQL."));
-    }
+// Executa a query
+if ($stmt->execute()) {
+    echo "Dados do livro inseridos com sucesso.";
 } else {
-    // Se não for uma requisição POST, retorna um erro
-    http_response_code(405); // Método não permitido
-    echo json_encode(array("erro" => "Apenas requisições POST são permitidas."));
+    echo "Erro ao inserir dados do livro: " . $conn->error;
 }
 
-// Fecha a conexão com o banco de dados
+// Fecha a declaração preparada e a conexão
+$stmt->close();
 $conn->close();
+?>
