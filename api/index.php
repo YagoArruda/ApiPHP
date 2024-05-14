@@ -31,6 +31,6 @@ if(isset($_GET['mode'])) {
             break;
     }
 } else {
-    echo "Parâmetro 'mode' não encontrado na URL!";
+    echo "Metodos implementados:\n🟢 Get -[Sem parametro necessario]\n🟡 Post - mode=post&id='0'&name='Livro Teste'\n🔴 Delete [Ainda não implementado] - \n🔴 Edit [Ainda não implementado] - \n\n\n############ \n\n\n🟢 - Completo\n🟡 - Completo, mas pode melhorar\n🔴 - Não implementado ou não funcional \n\n\nProjeto ApiPHP github: [https://github.com/YagoArruda/ApiPHP.git]\nUltima alteração: 14/05/2024";
 }
 ?>
