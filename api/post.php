@@ -7,7 +7,11 @@ $dbname = 'u689582486_teste';
 
 // Dados do livro
 $id = "autoIncrement";
-$nome = "O Paraiso";//$bookName;
+$nome = "envio-nulo";
+
+if(isset($_GET['name'])){
+    $nome = $_GET['name'];
+}
 
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
