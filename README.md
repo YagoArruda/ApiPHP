@@ -4,6 +4,7 @@ Projeto de uma Api feita interamente em PHP e hospedada no Vercel, para ser usad
 # Métodos
 🟢 Get - https://phaccess.vercel.app?op=get
 🟡 Post - https://phaccess.vercel.app?op=post&id=[id]&nome=[nome]&autor=[autor]&resumo=[resumo]&genero=[genero]
+* Se não for fornecido o 'id=[id]', será atribuído um automaticamente ao livro.
 🔴 Delete [Ainda não implementado] - 
 🔴 Edit [Ainda não implementado] - 
 

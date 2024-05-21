@@ -12,14 +12,11 @@ if(isset($_GET['op'])) {
             $gautor = isset($_GET['autor']);
             $gresumo = isset($_GET['resumo']);
             $ggenero = isset($_GET['genero']);
-            if($gid && $gnome && $gautor && $gresumo && $ggenero) {
+            if($gnome && $gautor && $gresumo && $ggenero) {
 
-                $gid = $_GET['id'];
-                $gnome = $_GET['nome'];
-                $gautor = $_GET['autor'];
-                $gresumo = $_GET['resumo'];
-                $ggenero = $_GET['genero'];
-
+                if($gid){
+                    include 'postWId.php';
+                }
                 include 'post.php';
 
             }

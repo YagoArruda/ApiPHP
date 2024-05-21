@@ -6,6 +6,7 @@ $password = '5e^TKn5ISqX';
 $dbname = 'u689582486_teste';
 
 // Dados do livro
+$id = $_GET['id'];
 $nome = $_GET['nome'];
 $autor = $_GET['autor'];
 $resumo = $_GET['resumo'];
@@ -20,11 +21,11 @@ if ($conn->connect_error) {
 }
 
 // Prepara a query SQL para inserir os dados
-$sql = "INSERT INTO livros (nome, autor, resumo, genero) VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO livros (nome, id_livro, autor, resumo, genero) VALUES (?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 
 // Associa os parâmetros à declaração preparada
-$stmt->bind_param("ssss",$nome, $autor, $resumo, $genero);
+$stmt->bind_param("sisss",$nome, $id, $autor, $resumo, $genero);
 
 // Executa a query
 if ($stmt->execute()) {
