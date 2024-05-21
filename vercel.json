@@ -6,24 +6,6 @@
   },
   "routes": [
     {
-      "src": "/get",
-      "dest": "/api/get.php",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "GET"
-      }
-    },
-    {
-      "src": "/post",
-      "dest": "/api/post.php",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "POST"
-      }
-    },
-    {
       "src": "/(.*)",
       "dest": "/api/index.php",
       "headers": {

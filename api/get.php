@@ -33,8 +33,11 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Adiciona os dados de cada linha como um array associativo ao array $resultadoJSON
         $livro = array(
-            "id" => $row["id"],
-            "nome" => $row["nome"]
+            "id" => $row["id_livro"],
+            "nome" => $row["nome"],
+            "autor" => $row["autor"],
+            "resumo" => $row["resumo"],
+            "genero" => $row["genero"]
         );
         // Adiciona o array do livro ao array $resultadoJSON
         $resultadoJSON[] = $livro;

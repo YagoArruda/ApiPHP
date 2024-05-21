@@ -1,20 +1,30 @@
 <?php
-if(isset($_GET['mode'])) {
-    $mode = $_GET['mode'];
+if(isset($_GET['op'])) {
+    $op = $_GET['op'];
     
-    switch($mode) {
+    switch($op) {
         case 'get':
             include 'get.php';
             break;
         case 'post':
-            if(isset($_GET['name'])){
+            $gid = isset($_GET['id']);
+            $gnome = isset($_GET['nome']);
+            $gautor = isset($_GET['autor']);
+            $gresumo = isset($_GET['resumo']);
+            $ggenero = isset($_GET['genero']);
+            if($gid && $gnome && $gautor && $gresumo && $ggenero) {
 
-                $bookName = $_GET['name'];
+                $gid = $_GET['id'];
+                $gnome = $_GET['nome'];
+                $gautor = $_GET['autor'];
+                $gresumo = $_GET['resumo'];
+                $ggenero = $_GET['genero'];
+
                 include 'post.php';
 
             }
             else{
-                echo "Parâmetro 'name' não encontrado na URL!";
+                echo "Parâmetro não encontrado na URL!";
             }
             
             break;
@@ -43,7 +53,7 @@ if(isset($_GET['mode'])) {
             <p>🟡 - Completo, mas pode melhorar</p>
             <p>🔴 - Não implementado ou não funcional</p>
             <p>Projeto API PHP no GitHub: [<a href="https://github.com/YagoArruda/ApiPHP.git">https://github.com/YagoArruda/ApiPHP.git</a>]</p>
-            <p>Última alteração: 14/05/2024</p>
+            <p>Última alteração: 21/05/2024</p>
             <br>
             </body>
             </html>
