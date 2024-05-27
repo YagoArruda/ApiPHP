@@ -5,9 +5,10 @@
     }
   },
   "routes": [
+
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php",
+      "src": "/get",
+      "dest": "/api/get/get.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
@@ -15,8 +16,18 @@
       }
     },
     {
-      "src": "/get",
-      "dest": "/api/get/get.php",
+      "src": "/get2",
+      "dest": "/get/get.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+      }
+    }
+    ,
+    {
+      "src": "/get3",
+      "dest": "/get.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
