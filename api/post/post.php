@@ -12,7 +12,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verifica a conexão
 if ($conn->connect_error) {
-    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+    die(json_encode(array("message" => "Erro na conexão com o banco de dados: " . $conn->connect_error)));
 }
 
 // Verifica se o método de requisição é POST
@@ -21,10 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
 
-    $nome = $data['nome'];
-    $autor = $data['autor'];
-    $resumo = $data['resumo'];
-    $genero = $data['genero'];
+    if (is_null($data)) {
+        echo json_encode(array("message" => "Dados JSON inválidos ou não fornecidos."));
+        exit();
+    }
+
+    $nome = isset($data['nome']) ? $data['nome'] : null;
+    $autor = isset($data['autor']) ? $data['autor'] : null;
+    $resumo = isset($data['resumo']) ? $data['resumo'] : null;
+    $genero = isset($data['genero']) ? $data['genero'] : null;
 
     // Valida se todos os campos foram fornecidos
     if (!empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
@@ -33,19 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("ssss", $nome,$autor, $resumo, $genero);
+        $stmt->bind_param("ssss", $nome, $autor, $resumo, $genero);
 
         // Executa a query
         if ($stmt->execute()) {
-            echo "Dados do livro inseridos com sucesso.";
+            echo json_encode(array("message" => "Dados do livro inseridos com sucesso."));
         } else {
-            echo "Erro ao inserir dados do livro: " . $conn->error;
+            echo json_encode(array("message" => "Erro ao inserir dados do livro: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo "Por favor, forneça todos os dados do livro.";
+        echo json_encode(array("message" => "Por favor, forneça todos os dados do livro."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use POST."));
