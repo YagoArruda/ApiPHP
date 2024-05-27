@@ -15,12 +15,15 @@ if ($conn->connect_error) {
 
 // Verifica se o método de requisição é POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Recebe os dados do livro via POST
-    $id = $_POST['id'];
-    $nome = $_POST['nome'];
-    $autor = $_POST['autor'];
-    $resumo = $_POST['resumo'];
-    $genero = $_POST['genero'];
+    // Recebe os dados do livro via JSON
+    $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
+
+    $id = $data['id'];
+    $nome = $data['nome'];
+    $autor = $data['autor'];
+    $resumo = $data['resumo'];
+    $genero = $data['genero'];
 
     // Valida se todos os campos foram fornecidos
     if (!empty($id) && !empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
@@ -44,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Por favor, forneça todos os dados do livro.";
     }
 } else {
-    echo "Método de requisição inválido. Use POST.";
+    echo json_encode(array("message" => "Método de requisição inválido. Use POST."));
 }
 
 // Fecha a conexão
