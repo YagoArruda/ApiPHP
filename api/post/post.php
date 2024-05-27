@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 // Dados de conexão com o banco de dados
 $servername = 'srv1197.hstgr.io';
 $username = 'u689582486_user';
@@ -19,20 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
 
-    $id = $data['id'];
     $nome = $data['nome'];
     $autor = $data['autor'];
     $resumo = $data['resumo'];
     $genero = $data['genero'];
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
+    if (!empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
         // Prepara a query SQL para inserir os dados
-        $sql = "INSERT INTO livros (nome, id_livro, autor, resumo, genero) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO livros (nome, autor, resumo, genero) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("sisss", $nome, $id, $autor, $resumo, $genero);
+        $stmt->bind_param("ssss", $nome,$autor, $resumo, $genero);
 
         // Executa a query
         if ($stmt->execute()) {
