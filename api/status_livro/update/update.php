@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     // Valida se todos os campos foram fornecidos
     if (!empty($id) && !empty($situacao)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE status_livro SET situacao = ? WHERE id = ?";
+        $sql = "UPDATE status_livro SET situação = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("si", $situacao,$id);
+        $stmt->bind_param("ii", $situacao,$id);
 
         // Executa a query
         if ($stmt->execute()) {

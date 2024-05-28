@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Valida se todos os campos foram fornecidos
     if (!empty($situacao) && !empty($id)) {
         // Prepara a query SQL para inserir os dados
-        $sql = "INSERT INTO status_livro (situacao, id_livro) VALUES (?, ?)";
+        $sql = "INSERT INTO status_livro (situação, id_livro) VALUES (?, ?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("si", $situacao, $id);
+        $stmt->bind_param("ii", $situacao, $id);
 
         // Executa a query
         if ($stmt->execute()) {

@@ -25,8 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = isset($data['data']) ? $data['data'] : null;
     $id = isset($data['id']) ? $data['id'] : null;
 
-    $dataStr = $data->format('d-m-Y');
-
     // Valida se todos os campos foram fornecidos
     if (!empty($id) && !empty($data) && !empty($cpf)) {
         // Prepara a query SQL para inserir os dados
@@ -34,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("sis", $cpf, $id, $dataStr);
+        $stmt->bind_param("sis", $cpf, $id, $data);
 
         // Executa a query
         if ($stmt->execute()) {
