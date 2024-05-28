@@ -3,14 +3,14 @@
     "api/index.php": {
       "runtime": "vercel-php@0.7.1"
     },
-    "api/reservas/index2.php": {
+    "reservas/index2.php": {
       "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
     {
       "src": "/reservas",
-      "dest": "/api/reservas/index2.php",
+      "dest": "/reservas/index2.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
