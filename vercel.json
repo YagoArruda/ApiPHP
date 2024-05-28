@@ -18,8 +18,8 @@
       }
     },
     {
-      "src": "/get",
-      "dest": "/api/get.php",
+      "src": "/reservas",
+      "dest": "/reservas/index.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",

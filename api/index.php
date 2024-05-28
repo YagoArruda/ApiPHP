@@ -13,6 +13,10 @@ if ($method == 'POST') {
 } 
 else if($method == 'GET'){
     include 'get/get.php';
+}else if($method == 'DELETE'){
+    include 'delete/delete.php';
+}else if($method == 'UPDATE'){
+    include 'update/update.php';
 } else {
     echo json_encode(array("message" => "Método de requisição não suportado."));
 }
@@ -69,7 +73,7 @@ if(isset($_GET['op'])) {
             <p>🟡 - Completo, mas pode melhorar</p>
             <p>🔴 - Não implementado ou não funcional</p>
             <p>Projeto API PHP no GitHub: [<a href="https://github.com/YagoArruda/ApiPHP.git">https://github.com/YagoArruda/ApiPHP.git</a>]</p>
-            <p>Última alteração: 21/05/2024</p>
+            <p>Última alteração: 27/05/2024</p>
             <br>
             </body>
             </html>
