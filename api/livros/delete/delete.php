@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: application/json');
-
-// Dados de conexão com o banco de dados
-$servername = 'srv1197.hstgr.io';
-$username = 'u689582486_user';
-$password = '5e^TKn5ISqX';
-$dbname = 'u689582486_teste';
+include realpath(__DIR__ . '/../../conn/conexao.php');
 
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,16 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         exit();
     }
 
-   $id = isset($data['id']) ? $data['id'] : null;
+   $cpf = isset($data['id']) ? $data['id'] : null;
 
     // Valida se o ID foi fornecido
-    if (!empty($id)) {
+    if (!empty($cpf)) {
         // Prepara a query SQL para deletar os dados
         $sql = "DELETE FROM livros WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa o parâmetro à declaração preparada
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("i", $cpf);
 
         // Executa a query
         if ($stmt->execute()) {

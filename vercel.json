@@ -1,16 +1,61 @@
 {
   "functions": {
-    "api/index.php": {
+    "api/livros/index.php": {
       "runtime": "vercel-php@0.7.1"
     },
-    "api/reservas/index2.php": {
+    "api/devolucao/devolucao.php": {
+      "runtime": "vercel-php@0.7.1"
+    },
+    "api/emprestimo/emprestimo.php": {
+      "runtime": "vercel-php@0.7.1"
+    },
+    "api/status_livro/statusLivro.php": {
+      "runtime": "vercel-php@0.7.1"
+    },
+    "api/usuario_livro/usuarioLivro.php": {
       "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
     {
-      "src": "/reservas",
-      "dest": "/api/reservas/index2.php",
+      "src": "/devolucao",
+      "dest": "/api/devolucao/devolucao.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+      }
+    },
+    {
+      "src": "/emprestimo",
+      "dest": "/api/emprestimo/emprestimo.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+      }
+    },
+    {
+      "src": "/livros",
+      "dest": "/api/livros/index.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+      }
+    },
+    {
+      "src": "/statusLivro",
+      "dest": "/api/status_livro/statusLivro.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+      }
+    },
+    {
+      "src": "/usuarioLivro",
+      "dest": "/api/usuario_livro/usuarioLivro.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
@@ -19,7 +64,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/index.php",
+      "dest": "/api/livros/index.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",

@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: application/json');
-
-// Dados de conexão com o banco de dados
-$servername = 'srv1197.hstgr.io';
-$username = 'u689582486_user';
-$password = '5e^TKn5ISqX';
-$dbname = 'u689582486_teste';
+include realpath(__DIR__ . '/../../conn/conexao.php');
 
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -27,18 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $nome = isset($data['nome']) ? $data['nome'] : null;
-    $autor = isset($data['autor']) ? $data['autor'] : null;
-    $resumo = isset($data['resumo']) ? $data['resumo'] : null;
-    $genero = isset($data['genero']) ? $data['genero'] : null;
+    $cpf = isset($data['autor']) ? $data['autor'] : null;
+    $email = isset($data['resumo']) ? $data['resumo'] : null;
+    $senha = isset($data['genero']) ? $data['genero'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
+    if (!empty($nome) && !empty($cpf) && !empty($email) && !empty($senha)) {
         // Prepara a query SQL para inserir os dados
         $sql = "INSERT INTO livros (nome, autor, resumo, genero) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("ssss", $nome, $autor, $resumo, $genero);
+        $stmt->bind_param("ssss", $nome, $cpf, $email, $senha);
 
         // Executa a query
         if ($stmt->execute()) {
