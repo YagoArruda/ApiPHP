@@ -21,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         exit();
     }
 
-   $id= isset($data['id_livro']) ? $data['id_livro'] : null;
+   $id= isset($data['id']) ? $data['id'] : null;
 
     // Valida se o ID foi fornecido
-    if (!empty($cpf)) {
+    if (!empty($id)) {
         // Prepara a query SQL para deletar os dados
         $sql = "DELETE FROM status_livro WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
