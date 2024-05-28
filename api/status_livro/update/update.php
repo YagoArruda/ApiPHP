@@ -21,19 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         exit();
     }
 
-    $cpf = isset($data['cpf']) ? $data['cpf'] : null;
-    $nome = isset($data['nome']) ? $data['nome'] : null;
-    $email = isset($data['email']) ? $data['email'] : null;
-    $senha = isset($data['senha']) ? $data['senha'] : null;
+    $id= isset($data['id']) ? $data['id'] : null;
+    $situacao= isset($data['situacao']) ? $data['situacao'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($cpf) && !empty($nome) && !empty($email) && !empty($senha)) {
+    if (!empty($id) && !empty($situacao)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE usuario_livro SET nome = ?, cpf = ?, email = ?, senha = ? WHERE cpf = ?";
+        $sql = "UPDATE status_livro SET situacao = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("siss", $nome, $cpf, $email, $senha);
+        $stmt->bind_param("si", $situacao,$id);
 
         // Executa a query
         if ($stmt->execute()) {

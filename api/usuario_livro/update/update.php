@@ -29,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     // Valida se todos os campos foram fornecidos
     if (!empty($cpf) && !empty($nome) && !empty($email) && !empty($senha)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE usuario_livro SET nome = ?, cpf = ?, email = ?, senha = ? WHERE cpf = ?";
+        $sql = "UPDATE usuario_livro SET nome = ?, email = ?, senha = ? WHERE cpf = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("siss", $nome, $cpf, $email, $senha);
+        $stmt->bind_param("sssi", $nome, $email, $senha,$cpf);
 
         // Executa a query
         if ($stmt->execute()) {
