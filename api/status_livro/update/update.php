@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     // Valida se todos os campos foram fornecidos
     if (!empty($id) && !empty($situacao)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE status_livro SET situação = ? WHERE id = ?";
+        $sql = "UPDATE status_livro SET situação = ? WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
@@ -36,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         // Executa a query
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
-                echo json_encode(array("message" => "Dados do usuario atualizados com sucesso."));
+                echo json_encode(array("message" => "Dados do status atualizados com sucesso."));
             } else {
-                echo json_encode(array("message" => "Nenhum usuario encontrado com o CPF fornecido."));
+                echo json_encode(array("message" => "Nenhum status encontrado com o CPF fornecido."));
             }
         } else {
-            echo json_encode(array("message" => "Erro ao atualizar dados do usuario: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao atualizar dados do status: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça todos os dados do usuario."));
+        echo json_encode(array("message" => "Por favor, forneça todos os dados do status."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use PUT."));
