@@ -15,7 +15,7 @@ else if($method == 'GET'){
     include 'get/get.php';
 }else if($method == 'DELETE'){
     include 'delete/delete.php';
-}else if($method == 'UPDATE'){
+}else if($method == 'PUT'){
     include 'update/update.php';
 } else {
     echo json_encode(array("message" => "Método de requisição não suportado."));
