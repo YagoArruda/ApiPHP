@@ -22,19 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     }
 
     $id= isset($data['id']) ? $data['id'] : null;
-    $data = isset($data['data']) ? $data['data'] : null;
+    $dataDev = isset($data['data']) ? $data['data'] : null;
     $cpf = isset($data['cpf']) ? $data['cpf'] : null;
 
-    $dataStr = $data->format('d-m-Y');
-
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($data) && !empty($cpf)) {
+    if (!empty($id) && !empty($dataDev) && !empty($cpf)) {
         // Prepara a query SQL para atualizar os dados
         $sql = "UPDATE devolucao SET data = ?, cpf = ? WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("ssi", $dataStr, $cpf, $id);
+        $stmt->bind_param("sii", $dataDev, $cpf, $id);
 
         // Executa a query
         if ($stmt->execute()) {
