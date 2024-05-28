@@ -2,12 +2,15 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.1"
+    },
+    "api/reservas/index2.php": {
+      "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php",
+      "src": "/reservas",
+      "dest": "/api/reservas/index2.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
@@ -15,8 +18,8 @@
       }
     },
     {
-      "src": "/reservas",
-      "dest": "/api/reservas/index2.php",
+      "src": "/(.*)",
+      "dest": "/api/index.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
