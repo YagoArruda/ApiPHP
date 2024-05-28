@@ -22,35 +22,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     }
 
     $id= isset($data['id']) ? $data['id'] : null;
-    $nome = isset($data['nome']) ? $data['nome'] : null;
-    $autor = isset($data['autor']) ? $data['autor'] : null;
-    $email = isset($data['resumo']) ? $data['resumo'] : null;
-    $senha = isset($data['genero']) ? $data['genero'] : null;
+    $data = isset($data['data']) ? $data['data'] : null;
+    $cpf = isset($data['cpf']) ? $data['cpf'] : null;
+
+    $dataStr = $data->format('d-m-Y');
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($nome) && !empty($autor) && !empty($email) && !empty($senha)) {
+    if (!empty($id) && !empty($data) && !empty($cpf)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE livros SET nome = ?, autor = ?, resumo = ?, genero = ? WHERE id_livro = ?";
+        $sql = "UPDATE devolucao SET data = ?, cpf = ? WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("ssssi", $nome, $autor, $email, $senha, $id);
+        $stmt->bind_param("ssi", $dataStr, $cpf, $id);
 
         // Executa a query
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
-                echo json_encode(array("message" => "Dados do livro atualizados com sucesso."));
+                echo json_encode(array("message" => "Dados do devolucao atualizados com sucesso."));
             } else {
-                echo json_encode(array("message" => "Nenhum livro encontrado com o ID fornecido."));
+                echo json_encode(array("message" => "Nenhum devolucao encontrado com o ID fornecido."));
             }
         } else {
-            echo json_encode(array("message" => "Erro ao atualizar dados do livro: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao atualizar dados do devolucao: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça todos os dados do livro."));
+        echo json_encode(array("message" => "Por favor, forneça todos os dados do devolucao."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use PUT."));

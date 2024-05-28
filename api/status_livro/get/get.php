@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 // Verifica se o método de requisição é GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Executa a query para selecionar os dados
-    $sql = "SELECT * FROM usuario_livro";
+    $sql = "SELECT * FROM status_livro";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
         echo json_encode($livros);
     } else {
-        echo "Nenhum usuario encontrado.";
+        echo "Nenhum status encontrado.";
     }
 } else {
     echo "Método de requisição inválido. Use GET.";

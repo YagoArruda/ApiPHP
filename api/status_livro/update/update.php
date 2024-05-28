@@ -21,36 +21,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         exit();
     }
 
-    $id= isset($data['id']) ? $data['id'] : null;
+    $cpf = isset($data['cpf']) ? $data['cpf'] : null;
     $nome = isset($data['nome']) ? $data['nome'] : null;
-    $autor = isset($data['autor']) ? $data['autor'] : null;
-    $email = isset($data['resumo']) ? $data['resumo'] : null;
-    $senha = isset($data['genero']) ? $data['genero'] : null;
+    $email = isset($data['email']) ? $data['email'] : null;
+    $senha = isset($data['senha']) ? $data['senha'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($nome) && !empty($autor) && !empty($email) && !empty($senha)) {
+    if (!empty($cpf) && !empty($nome) && !empty($email) && !empty($senha)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE livros SET nome = ?, autor = ?, resumo = ?, genero = ? WHERE id_livro = ?";
+        $sql = "UPDATE usuario_livro SET nome = ?, cpf = ?, email = ?, senha = ? WHERE cpf = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("ssssi", $nome, $autor, $email, $senha, $id);
+        $stmt->bind_param("siss", $nome, $cpf, $email, $senha);
 
         // Executa a query
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
-                echo json_encode(array("message" => "Dados do livro atualizados com sucesso."));
+                echo json_encode(array("message" => "Dados do usuario atualizados com sucesso."));
             } else {
-                echo json_encode(array("message" => "Nenhum livro encontrado com o ID fornecido."));
+                echo json_encode(array("message" => "Nenhum usuario encontrado com o CPF fornecido."));
             }
         } else {
-            echo json_encode(array("message" => "Erro ao atualizar dados do livro: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao atualizar dados do usuario: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça todos os dados do livro."));
+        echo json_encode(array("message" => "Por favor, forneça todos os dados do usuario."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use PUT."));

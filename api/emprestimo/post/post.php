@@ -21,31 +21,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    $nome = isset($data['nome']) ? $data['nome'] : null;
-    $autor = isset($data['autor']) ? $data['autor'] : null;
-    $resumo = isset($data['resumo']) ? $data['resumo'] : null;
-    $genero = isset($data['genero']) ? $data['genero'] : null;
+    $cpf = isset($data['cpf']) ? $data['cpf'] : null;
+    $data = isset($data['data']) ? $data['data'] : null;
+    $id = isset($data['id']) ? $data['id'] : null;
+
+    $dataStr = $data->format('d-m-Y');
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
+    if (!empty($id) && !empty($data) && !empty($cpf)) {
         // Prepara a query SQL para inserir os dados
-        $sql = "INSERT INTO livros (nome, autor, resumo, genero) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO emprestimo (cpf, id_livro, data) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("ssss", $nome, $autor, $resumo , $genero);
+        $stmt->bind_param("sis", $cpf, $id, $dataStr);
 
         // Executa a query
         if ($stmt->execute()) {
-            echo json_encode(array("message" => "Dados do livro inseridos com sucesso."));
+            echo json_encode(array("message" => "Dados do emprestimo inseridos com sucesso."));
         } else {
-            echo json_encode(array("message" => "Erro ao inserir dados do livro: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao inserir dados do emprestimo: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça todos os dados do livro."));
+        echo json_encode(array("message" => "Por favor, forneça todos os dados do emprestimo."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use POST."));

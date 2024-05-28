@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         exit();
     }
 
-   $id = isset($data['id']) ? $data['id'] : null;
+   $id= isset($data['id_livro']) ? $data['id_livro'] : null;
 
     // Valida se o ID foi fornecido
-    if (!empty($id)) {
+    if (!empty($cpf)) {
         // Prepara a query SQL para deletar os dados
-        $sql = "DELETE FROM livros WHERE id_livro = ?";
+        $sql = "DELETE FROM status_livro WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa o parâmetro à declaração preparada
@@ -35,18 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         // Executa a query
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
-                echo json_encode(array("message" => "Livro deletado com sucesso."));
+                echo json_encode(array("message" => "status deletado com sucesso."));
             } else {
-                echo json_encode(array("message" => "Nenhum livro encontrado com o ID fornecido."));
+                echo json_encode(array("message" => "Nenhum status encontrado com o id fornecido."));
             }
         } else {
-            echo json_encode(array("message" => "Erro ao deletar o livro: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao deletar o status: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça o ID do livro a ser deletado."));
+        echo json_encode(array("message" => "Por favor, forneça o id do status a ser deletado."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use DELETE."));

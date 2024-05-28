@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     // Valida se o ID foi fornecido
     if (!empty($id)) {
         // Prepara a query SQL para deletar os dados
-        $sql = "DELETE FROM livros WHERE id_livro = ?";
+        $sql = "DELETE FROM emprestimo WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa o parâmetro à declaração preparada
@@ -35,18 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         // Executa a query
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
-                echo json_encode(array("message" => "Livro deletado com sucesso."));
+                echo json_encode(array("message" => "emprestimo deletado com sucesso."));
             } else {
-                echo json_encode(array("message" => "Nenhum livro encontrado com o ID fornecido."));
+                echo json_encode(array("message" => "Nenhum emprestimo encontrado com o ID fornecido."));
             }
         } else {
-            echo json_encode(array("message" => "Erro ao deletar o livro: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao deletar o emprestimo: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça o ID do livro a ser deletado."));
+        echo json_encode(array("message" => "Por favor, forneça o ID do esmprestimo a ser deletado."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use DELETE."));
