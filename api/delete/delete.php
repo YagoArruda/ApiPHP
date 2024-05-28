@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     }
 
    $id = isset($data['id']) ? $data['id'] : null;
-   
+
     // Valida se o ID foi fornecido
     if (!empty($id)) {
         // Prepara a query SQL para deletar os dados
-        $sql = "DELETE FROM livros WHERE id = ?";
+        $sql = "DELETE FROM livros WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa o parâmetro à declaração preparada

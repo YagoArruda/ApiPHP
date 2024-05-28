@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     // Valida se todos os campos foram fornecidos
     if (!empty($id) && !empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE livros SET nome = ?, autor = ?, resumo = ?, genero = ? WHERE id = ?";
+        $sql = "UPDATE livros SET nome = ?, autor = ?, resumo = ?, genero = ? WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
