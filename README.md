@@ -7,7 +7,42 @@ Projeto de uma Api feita interamente em PHP e hospedada no Vercel, para ser usad
 #### 🟢 Update - Implementado
 #### 🟢 Delete - Implementado
 
-* Cada um desses métodos existe para [livos,emprestimo,devolucao,usuarioLivro,statusLivro].
+* Cada um desses métodos existe para [livros,emprestimo,devolucao,usuarioLivro,statusLivro].
+
+# Tabelas
+## 🟢 Devolução: (.../devolucao)
+#### Get - []
+#### Post - [id, data, cpf]
+#### Update - [id, data, cpf]
+#### Delete - [id]
+
+## 🟢 Emprestimo: (.../emprestimo)
+#### Get - []
+#### Post - [id, data, cpf]
+#### Update - [id, data, cpf]
+#### Delete - [id]
+
+## 🟢 Livros: (.../livros)
+#### Get - []
+#### Post - [id, nome, autor, resumo, genero]
+#### Update - [id, nome, autor, resumo, genero]
+#### Delete - [id]
+
+## 🔴 Livro: (.../livro?id='')
+#### Get - [*Vai se basear no id passado na url*]
+*Serve apenas para acessar um livro individualmente
+
+## 🟢 Status_Livro: (.../statusLivro)
+#### Get - []
+#### Post - [id, situacao]
+#### Update - [id, situacao]
+#### Delete - [id]
+
+## 🟢 Usuario_Livro: (.../usuarioLivro)
+#### Get - []
+#### Post - [cpf, nome, email, senha]
+#### Update - [cpf, nome, email, senha]
+#### Delete - [cpf]
 
 ############
 
@@ -17,5 +52,5 @@ Projeto de uma Api feita interamente em PHP e hospedada no Vercel, para ser usad
 
 API: <a href="https://phaccess.vercel.app/">https://phaccess.vercel.app/</a>
 
-# Vercel
-Teste com node.js versão 18.
+# Informações sobre o Vercel
+Teste com node.js configurado na versão 18.
