@@ -14,6 +14,12 @@
     },
     "api/usuario_livro/usuarioLivro.php": {
       "runtime": "vercel-php@0.7.1"
+    },
+    "api/docs/docs.php": {
+      "runtime": "vercel-php@0.7.1"
+    },
+    "api/livro/livro.php": {
+      "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
@@ -60,6 +66,24 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+      }
+    },
+    {
+      "src": "/livro",
+      "dest": "/api/livro/livro.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET"
+      }
+    },
+    {
+      "src": "/docs",
+      "dest": "/api/docs/docs.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET"
       }
     },
     {

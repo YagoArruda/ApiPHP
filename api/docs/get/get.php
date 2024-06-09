@@ -1,15 +1,6 @@
-# Resumo
-Projeto de uma Api feita interamente em PHP e hospedada no Vercel, para ser usada para se comunicar com um banco de livros SQL.
+<?php
+echo `
 
-# Métodos
-#### 🟢 Get - Implementado
-#### 🟢 Post - Implementado
-#### 🟢 Update - Implementado
-#### 🟢 Delete - Implementado
-
-* Cada um desses métodos existe para [livros,emprestimo,devolucao,usuarioLivro,statusLivro].
-
-# Tabelas
 ## 🟢 Devolução: (.../devolucao)
 #### Get - []
 #### Post - [id, data, cpf]
@@ -50,13 +41,6 @@ Projeto de uma Api feita interamente em PHP e hospedada no Vercel, para ser usad
 #### Get - []
 *Permite ver informações de uso da API.
 
-############
-
-#### 🟢 - Completo
-#### 🟡 - Completo, mas pode melhorar
-#### 🔴 - Não implementado ou não funcional
-
 API: <a href="https://phaccess.vercel.app/">https://phaccess.vercel.app/</a>
-
-# Informações sobre o Vercel
-Teste com node.js configurado na versão 18.
+`;
+?>
