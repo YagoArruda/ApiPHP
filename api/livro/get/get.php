@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 // Verifica se o método de requisição é GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Executa a query para selecionar os dados
-    $sql = "SELECT * FROM livros WHERE ID = htmlspecialchars($id) ";
+    $sql = "SELECT * FROM livros WHERE id_livro = htmlspecialchars($id) ";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

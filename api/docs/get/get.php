@@ -1,5 +1,5 @@
 <?php
-echo `
+echo json_encode(array(`
 
 ## 🟢 Devolução: (.../devolucao)
 #### Get - []
@@ -42,5 +42,5 @@ echo `
 *Permite ver informações de uso da API.
 
 API: <a href="https://phaccess.vercel.app/">https://phaccess.vercel.app/</a>
-`;
+`));
 ?>
