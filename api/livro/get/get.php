@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Erro na conexão com o banco de dados: " . $conn->connect_error);
 }
 
-$id = htmlspecialchars($id);
+$id = isset($_REQUEST['id']);
 
 // Verifica se o método de requisição é GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

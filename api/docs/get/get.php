@@ -1,5 +1,5 @@
 <?php
-echo json_encode(array(`
+echo json_encode(array("message" => `
 
 ## 🟢 Devolução: (.../devolucao)
 #### Get - []
