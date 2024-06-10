@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include realpath(__DIR__ . '/../../conn/conexao.php');
+include realpath(__DIR__ . '/../conn/conexao.php');
 
 // Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
