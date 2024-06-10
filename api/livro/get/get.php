@@ -10,7 +10,12 @@ if ($conn->connect_error) {
     die("Erro na conexão com o banco de dados: " . $conn->connect_error);
 }
 
-$id = isset($_REQUEST['id']);
+if(isset($_REQUEST['id'])){
+    $id = $_GET['id']; 
+}
+else{
+    echo "Id não informado (.../livro?id={id})";
+}
 
 // Verifica se o método de requisição é GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

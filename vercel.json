@@ -18,6 +18,9 @@
     "api/docs/docs.php": {
       "runtime": "vercel-php@0.7.1"
     },
+    "api/login/login.php": {
+      "runtime": "vercel-php@0.7.1"
+    },
     "api/livro/livro.php": {
       "runtime": "vercel-php@0.7.1"
     }
@@ -80,6 +83,15 @@
     {
       "src": "/docs",
       "dest": "/api/docs/docs.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET"
+      }
+    },
+    {
+      "src": "/login",
+      "dest": "/api/login/login.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
