@@ -50,6 +50,10 @@ Projeto de uma Api feita interamente em PHP e hospedada no Vercel, para ser usad
 #### Get - []
 *Permite ver informações de uso da API.
 
+## 🟢 Login: (.../login)
+#### Get - [email, senha]
+*Confere se os dados de login estão corretos
+
 ############
 
 #### 🟢 - Completo
