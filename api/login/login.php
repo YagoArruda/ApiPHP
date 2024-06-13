@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 // Verifica se o método de requisição é GET
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' || $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
