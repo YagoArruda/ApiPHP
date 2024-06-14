@@ -37,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("ssss", $nome, $autor, $resumo , $genero);
 
         $sql = "INSERT INTO capa_livro (capa) VALUES (?)";
-        $stmt = $conn->prepare($sql);
+        $stmt2 = $conn->prepare($sql);
 
-        $stmt->bind_param("s", $capa);
-
+        $stmt2->bind_param("s", $capa);
+        $stmt2->execute();
         // Executa a query
         if ($stmt->execute()) {
             echo json_encode(array("message" => "Dados do livro inseridos com sucesso."));
