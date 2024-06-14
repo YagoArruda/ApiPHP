@@ -23,6 +23,9 @@
     },
     "api/livro/livro.php": {
       "runtime": "vercel-php@0.7.1"
+    },
+    "api/capa/capa.php": {
+      "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
@@ -92,6 +95,15 @@
     {
       "src": "/login",
       "dest": "/api/login/login.php",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST"
+      }
+    },
+    {
+      "src": "/capa",
+      "dest": "/api/capa/capa.php",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
