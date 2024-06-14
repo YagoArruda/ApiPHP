@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $valor = isset($data['valor']) ? $data['valor'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($valor)) {
+    if (!empty($valor)) {
         // Prepara a query SQL para inserir os dados
         $sql = "INSERT INTO capa_livro (valor) VALUES (?)";
         $stmt = $conn->prepare($sql);
