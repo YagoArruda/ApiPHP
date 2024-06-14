@@ -37,15 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Executa a query
         if ($stmt->execute()) {
-            echo json_encode(array("message" => "Dados do usuario inseridos com sucesso."));
+            echo json_encode(array("message" => "Dados do usuário inseridos com sucesso."));
         } else {
-            echo json_encode(array("message" => "Erro ao inserir dados do usuario: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao inserir dados do usuário: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça todos os dados do usuario."));
+        echo json_encode(array("message" => "Por favor, forneça todos os dados do usuário."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use POST."));

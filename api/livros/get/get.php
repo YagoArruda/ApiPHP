@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 // Verifica se o método de requisição é GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Executa a query para selecionar os dados
-    $sql = "SELECT * FROM livros";
+    $sql = "SELECT * FROM livros FULL JOIN capa_livro ON capa_livro.id = id_livro";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

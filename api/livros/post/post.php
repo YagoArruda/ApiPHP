@@ -25,15 +25,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $autor = isset($data['autor']) ? $data['autor'] : null;
     $resumo = isset($data['resumo']) ? $data['resumo'] : null;
     $genero = isset($data['genero']) ? $data['genero'] : null;
+    $capa = isset($data['capa']) ? $data['capa'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero)) {
+    if (!empty($nome) && !empty($autor) && !empty($resumo) && !empty($genero) && !empty($capa)) {
         // Prepara a query SQL para inserir os dados
         $sql = "INSERT INTO livros (nome, autor, resumo, genero) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
         $stmt->bind_param("ssss", $nome, $autor, $resumo , $genero);
+
+        $sql = "INSERT INTO capa_livro (capa) VALUES (?)";
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param("s", $capa);
 
         // Executa a query
         if ($stmt->execute()) {
