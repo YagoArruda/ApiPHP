@@ -21,29 +21,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    $id = isset($data['id']) ? $data['id'] : null;
+    //$id = isset($data['id']) ? $data['id'] : null;
     $valor = isset($data['valor']) ? $data['valor'] : null;
 
     // Valida se todos os campos foram fornecidos
     if (!empty($id) && !empty($valor)) {
         // Prepara a query SQL para inserir os dados
-        $sql = "INSERT INTO caoa_livro (id, valor) VALUES (?, ?)";
+        $sql = "INSERT INTO capa_livro (valor) VALUES (?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("is", $id, $valor);
+        $stmt->bind_param("s", $valor);
 
         // Executa a query
         if ($stmt->execute()) {
-            echo json_encode(array("message" => "Dados do livro inseridos com sucesso."));
+            echo json_encode(array("message" => "Dados da capa inseridos com sucesso."));
         } else {
-            echo json_encode(array("message" => "Erro ao inserir dados do livro: " . $stmt->error));
+            echo json_encode(array("message" => "Erro ao inserir dados da capa: " . $stmt->error));
         }
 
         // Fecha a declaração preparada e a conexão
         $stmt->close();
     } else {
-        echo json_encode(array("message" => "Por favor, forneça todos os dados do livro."));
+        echo json_encode(array("message" => "Por favor, forneça todos os dados da capa."));
     }
 } else {
     echo json_encode(array("message" => "Método de requisição inválido. Use POST."));
