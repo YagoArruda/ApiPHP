@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode(array("message" => "Por favor, forneça todos os dados do emprestimo."));
     }
 } else {
-    echo json_encode(array("message" => "Método de requisição inválido. Use POST."));
+    echo json_encode(array("message" => "Método de requisição inválido. Use POST." + $email + $id + $dataEmp));
 }
 
 // Fecha a conexão
