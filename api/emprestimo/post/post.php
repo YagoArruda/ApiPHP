@@ -21,18 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    $cpf = isset($data['cpf']) ? $data['cpf'] : null;
+    $email = isset($data['email']) ? $data['email'] : null;
     $dataEmp = isset($data['data']) ? $data['data'] : null;
     $id = isset($data['id']) ? $data['id'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($dataEmp) && !empty($cpf)) {
+    if (!empty($id) && !empty($dataEmp) && !empty($email)) {
         // Prepara a query SQL para inserir os dados
-        $sql = "INSERT INTO emprestimo (cpf, id_livro, data) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO emprestimo (email, id_livro, data) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("iis", $cpf, $id, $dataEmp);
+        $stmt->bind_param("sis", $email, $id, $dataEmp);
 
         // Executa a query
         if ($stmt->execute()) {

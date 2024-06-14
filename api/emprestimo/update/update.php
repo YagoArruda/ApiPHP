@@ -23,16 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 
     $id= isset($data['id']) ? $data['id'] : null;
     $dataEmp = isset($data['data']) ? $data['data'] : null;
-    $cpf = isset($data['cpf']) ? $data['cpf'] : null;
+    $email = isset($data['email']) ? $data['email'] : null;
 
     // Valida se todos os campos foram fornecidos
-    if (!empty($id) && !empty($dataEmp) && !empty($cpf)) {
+    if (!empty($id) && !empty($dataEmp) && !empty($email)) {
         // Prepara a query SQL para atualizar os dados
-        $sql = "UPDATE emprestimo SET data = ?, cpf = ? WHERE id_livro = ?";
+        $sql = "UPDATE emprestimo SET data = ?, email = ? WHERE id_livro = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa os parâmetros à declaração preparada
-        $stmt->bind_param("sii", $dataEmp, $cpf, $id);
+        $stmt->bind_param("ssi", $dataEmp, $email, $id);
 
         // Executa a query
         if ($stmt->execute()) {
