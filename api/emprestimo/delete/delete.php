@@ -22,15 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     }
 
    $id = isset($data['id']) ? $data['id'] : null;
+   $id = isset($data['email']) ? $data['email'] : null;
 
     // Valida se o ID foi fornecido
-    if (!empty($id)) {
+    if (!empty($id) && !empty($email)) {
         // Prepara a query SQL para deletar os dados
-        $sql = "DELETE FROM emprestimo WHERE id_livro = ?";
+        $sql = "DELETE FROM emprestimo WHERE id_livro = ? AND email = ?";
         $stmt = $conn->prepare($sql);
 
         // Associa o parâmetro à declaração preparada
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("is", $id, $email);
 
         // Executa a query
         if ($stmt->execute()) {
