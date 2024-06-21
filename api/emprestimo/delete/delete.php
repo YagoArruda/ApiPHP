@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     }
 
    $id = isset($data['id']) ? $data['id'] : null;
-   $id = isset($data['email']) ? $data['email'] : null;
+   $email = isset($data['email']) ? $data['email'] : null;
 
     // Valida se o ID foi fornecido
     if (!empty($id) && !empty($email)) {
